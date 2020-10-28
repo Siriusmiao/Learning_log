@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '3_@&ih_@q8txx=rb&jz2v0l$ohr+xs^e4nbjpa)mcq8s9qp5w5'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -130,19 +130,7 @@ BOOTSTRAP3 = {
     'include_jquery':True,
 }
 
-#heroku设置#
-if os.getcwd()== '/app':
-    import dj_database_url
-    DATABASES = {
-        'default': dj_database_url.config(default='postgres://localhost')
-    }
+ALLOWED_HOSTS = ['*']
 
-    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+STATIC_ROOT = os.path.join(BASE_DIR, 'collected_static')
 
-    ALLOWED_HOSTS = ['*']
-
-    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-    STATIC_URL = 'staticfiles'
-    STATICFILES_DIRS = (
-        os.path.join(BASE_DIR,'static'),
-        )
